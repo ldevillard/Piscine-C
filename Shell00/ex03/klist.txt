@@ -1,0 +1,6 @@
+Credentials cache: API:188649BE-3378-406B-9AFB-77309A51D7D8
+        Principal: ldevilla@42LYON.FR
+
+  Issued                Expires               Principal
+Sep  7 12:28:51 2020  Sep  8 12:28:51 2020  krbtgt/42LYON.FR@42LYON.FR
+Sep  7 12:28:52 2020  Sep  8 12:28:51 2020  HTTP/san-ssd.42lyon.fr@42LYON.FR
