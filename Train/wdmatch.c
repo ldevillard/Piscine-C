@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrev.c                                           :+:      :+:    :+:   */
+/*   wdmatch.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 09:55:46 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/09/28 13:46:30 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/28 13:48:00 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/10/01 09:51:05 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,43 @@ void	ft_putstr(char *str)
 
 	i = 0;
 	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
+		ft_putchar(str[i++]);
 }
 
-int		ft_strlen(char *str)
+int		is_match(char *s1, char *s2)
 {
 	int i;
+	int j;
+	int found;
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	*strrev(char *str)
-{
-	char	temp;
-	int i = 0;
-	int j = ft_strlen(str) - 1;
-	while (i < j)
+	j = 0;
+	while (s1[i])
 	{
-		temp = str[i];
-		str[i] = str[j];
-		str[j] = temp;
-		j--;
+		found = 0;	
+		while (s2[j])
+		{
+			if (s1[i] == s2[j])
+			{
+				found = 1;	
+				break;
+			}		
+			j++;
+		}
+		if (found == 0)
+			return (0);
 		i++;
 	}
-	return (str);
+	return (1);
 }
 
-int 	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	if (argc == 2)
-		ft_putstr(strrev(argv[1]));
+	if (argc == 3)
+	{
+		if ((is_match(argv[1], argv[2])) == 1)
+			ft_putstr(argv[1]);
+	}
 	ft_putchar('\n');
 	return (0);
 }

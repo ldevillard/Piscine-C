@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrev.c                                           :+:      :+:    :+:   */
+/*   inter2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 09:55:46 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/09/28 13:46:30 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/28 15:35:41 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/09/30 17:42:30 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,54 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str)
+int		check_man(char *man, char c)
 {
 	int i;
 
 	i = 0;
-	while (str[i])
+	while (man[i])
 	{
-		ft_putchar(str[i]);
+		if (man[i] == c)
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
-int		ft_strlen(char *str)
+void	inter(char *s1, char *s2)
 {
 	int i;
+	int j;
+	int k;
+	char man[256] = {0};
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	*strrev(char *str)
-{
-	char	temp;
-	int i = 0;
-	int j = ft_strlen(str) - 1;
-	while (i < j)
+	j = 0;
+	k = 0;
+	while (s1[i])
 	{
-		temp = str[i];
-		str[i] = str[j];
-		str[j] = temp;
-		j--;
+		if ((check_man(man, s1[i])) == 1)
+		{
+			j = 0;
+			while (s2[j])
+			{
+				if (s1[i] == s2[j])
+				{
+					ft_putchar(s1[i]);
+					man[k++] = s1[i];
+					break ;
+				}
+				j++;
+			}
+		}
 		i++;
 	}
-	return (str);
 }
 
-int 	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	if (argc == 2)
-		ft_putstr(strrev(argv[1]));
+	if (argc == 3)
+		inter(argv[1], argv[2]);
 	ft_putchar('\n');
 	return (0);
 }

@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   ft.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 14:30:26 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/10/01 14:48:46 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/29 12:59:50 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/09/30 14:12:38 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef FT_H
+# define FT_H
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
-void	first_word(char *str)
-{
-	int i;
+void	ft_putchar(char c);
+void	ft_swap(int *a, int *b);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+int		ft_strcmp(char *s1, char *s2);
+char	*set_map(void);
+char	*ft_analyse(char *map);
 
-	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-		i++;
-	while (str[i] && str[i] != ' ' && str[i] != '\t')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-		first_word(argv[1]);
-	ft_putchar('\n');
-	return (0);
-}
+#endif

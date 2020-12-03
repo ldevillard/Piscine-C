@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrev.c                                           :+:      :+:    :+:   */
+/*   rev_arg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 09:55:46 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/09/28 13:46:30 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/28 13:39:55 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/09/28 13:44:24 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,19 @@ void	ft_putstr(char *str)
 
 	i = 0;
 	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
+		ft_putchar(str[i++]);
+	ft_putchar('\n');
 }
 
-int		ft_strlen(char *str)
+int		main(int argc, char **argv)
 {
 	int i;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	*strrev(char *str)
-{
-	char	temp;
-	int i = 0;
-	int j = ft_strlen(str) - 1;
-	while (i < j)
+	i = argc - 1;
+	while (i != 0)
 	{
-		temp = str[i];
-		str[i] = str[j];
-		str[j] = temp;
-		j--;
-		i++;
+		ft_putstr(argv[i]);
+		i--;
 	}
-	return (str);
-}
-
-int 	main(int argc, char **argv)
-{
-	if (argc == 2)
-		ft_putstr(strrev(argv[1]));
-	ft_putchar('\n');
 	return (0);
 }

@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 14:30:26 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/10/01 14:48:46 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/28 09:58:37 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/09/28 10:00:00 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	first_word(char *str)
+int		ft_strcmp(char *s1, char *s2)
 {
 	int i;
 
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	while (str[i] && str[i] != ' ' && str[i] != '\t')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-		first_word(argv[1]);
-	ft_putchar('\n');
-	return (0);
+	return (s1[i] - s2[i]);
 }

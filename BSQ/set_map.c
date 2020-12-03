@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   set_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 14:30:26 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/10/01 14:48:46 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/30 11:31:37 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/09/30 14:13:21 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft.h"
 
-void	ft_putchar(char c)
+char	*set_map(void)
 {
-	write(1, &c, 1);
-}
-
-void	first_word(char *str)
-{
-	int i;
+	int		fd;
+	int		count;
+	int		i;
+	char	*map;
+	char	buf[2];
 
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-		i++;
-	while (str[i] && str[i] != ' ' && str[i] != '\t')
+	count = 1;
+	fd = open("map", O_RDONLY);
+	while (count > 0)
 	{
-		ft_putchar(str[i]);
-		i++;
+		count = read(fd, buf, 1);
+		i += count;
 	}
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-		first_word(argv[1]);
-	ft_putchar('\n');
-	return (0);
+	close(fd);
+	map = (char *)malloc(sizeof(char) * (i + 1));
+	if (!map)
+		return (NULL);
+	count = 1;
+	fd = open("map", O_RDONLY);
+	count = read(fd, map, i);
+	map[i] = '\0';
+	close(fd);
+	return (map);
 }

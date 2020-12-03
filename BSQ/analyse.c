@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   analyse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 14:30:26 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/10/01 14:48:46 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/30 14:11:03 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/09/30 17:19:01 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft.h"
 
-void	ft_putchar(char c)
+char	*ft_analyse(char *map)
 {
-	write(1, &c, 1);
-}
-
-void	first_word(char *str)
-{
-	int i;
+	char	*newmap;
+	int		i;
+	int		count;
 
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-		i++;
-	while (str[i] && str[i] != ' ' && str[i] != '\t')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 2)
-		first_word(argv[1]);
-	ft_putchar('\n');
-	return (0);
+	count = 0;
+	newmap = (char *)malloc(sizeof(char) * (ft_strlen(map) + 1));
+	newmap = map;
+	if (!newmap)
+		return (NULL);
+	newmap[i] = '\0';
+	return (newmap);
 }

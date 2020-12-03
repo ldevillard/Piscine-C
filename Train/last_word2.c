@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrev.c                                           :+:      :+:    :+:   */
+/*   last_word2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 09:55:46 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/09/28 13:46:30 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/09/28 18:35:52 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/09/28 19:57:38 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
 }
 
 int		ft_strlen(char *str)
@@ -39,26 +27,44 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*strrev(char *str)
+void	ft_last_word(char *str)
 {
-	char	temp;
-	int i = 0;
-	int j = ft_strlen(str) - 1;
-	while (i < j)
+	int i;
+
+	i = ft_strlen(str) - 1;
+	while (i >= 0 && (str[i] == ' ' || str[i] == '\t'))
+		i--;
+	while (i >= 0 && str[i] != ' ' && str[i] != '\t')
+		i--;
+	if (i < 0)
+		i++;
+	if ((str[i] == ' ' || str[i] == '\t') && str[i])
+		i++;
+	while (str[i] != ' ' && str[i] != '\t' && str[i])
 	{
-		temp = str[i];
-		str[i] = str[j];
-		str[j] = temp;
-		j--;
+		ft_putchar(str[i]);
 		i++;
 	}
-	return (str);
+}
+
+void	last_word(char *str)
+{
+	int		i;
+	int		end;
+
+	i = ft_strlen(str) - 1;
+	while (i > 0 && (str[i] == ' ' || str[i] == '\t'))
+		i--;
+	end = i;
+	while (i >= 0 && str[i] != ' ' && str[i] != '\t')
+		i--;
+	write(1, &str[i + 1], end - i);
 }
 
 int 	main(int argc, char **argv)
 {
 	if (argc == 2)
-		ft_putstr(strrev(argv[1]));
+		last_word(argv[1]);
 	ft_putchar('\n');
 	return (0);
 }

@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrev.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/25 09:55:46 by ldevilla          #+#    #+#             */
-/*   Updated: 2020/09/28 13:46:30 by ldevilla         ###   ########lyon.fr   */
+/*   Created: 2020/10/01 13:07:36 by ldevilla          #+#    #+#             */
+/*   Updated: 2020/10/01 14:08:47 by ldevilla         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -23,10 +24,7 @@ void	ft_putstr(char *str)
 
 	i = 0;
 	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
+		ft_putchar(str[i++]);
 }
 
 int		ft_strlen(char *str)
@@ -39,26 +37,28 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*strrev(char *str)
+char	*ft_strdup(char *src)
 {
-	char	temp;
-	int i = 0;
-	int j = ft_strlen(str) - 1;
-	while (i < j)
+	int		i;
+	char	*copy;
+
+	i = 0;
+	copy = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!copy)
+		return (NULL);
+	while (src[i])
 	{
-		temp = str[i];
-		str[i] = str[j];
-		str[j] = temp;
-		j--;
+		copy[i] = src[i];
 		i++;
 	}
-	return (str);
+	copy[i] = '\0';
+	return (copy);
 }
 
-int 	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	if (argc == 2)
-		ft_putstr(strrev(argv[1]));
+		ft_putstr(ft_strdup(argv[1]));
 	ft_putchar('\n');
 	return (0);
 }
